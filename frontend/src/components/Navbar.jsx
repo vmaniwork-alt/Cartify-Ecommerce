@@ -39,7 +39,7 @@ const Navbar = () => {
           Cartify
         </Link>
 
-        {/* DESKTOP MENU */}
+        {/* DESKTOP MENU (UNCHANGED) */}
         <div className="hidden md:flex items-center gap-6">
           <NavLink to="/products" className={linkClass}>
             <Boxes size={20} /> Products
@@ -88,7 +88,6 @@ const Navbar = () => {
 
         {/* MOBILE ACTIONS */}
         <div className="md:hidden flex items-center gap-4">
-          {/* MOBILE CART ICON */}
           {user && (
             <NavLink
               to="/cart"
@@ -104,71 +103,81 @@ const Navbar = () => {
             </NavLink>
           )}
 
-          {/* MENU TOGGLE */}
-          <button
-            className="text-white"
-            onClick={() => setOpen(!open)}
-          >
+          <button className="text-white" onClick={() => setOpen(!open)}>
             {open ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* 🔥 MODERN MOBILE MENU (ONLY THIS PART CHANGED) */}
       {open && (
-        <div className="md:hidden mt-4 flex flex-col gap-5 bg-slate-900 rounded-lg p-4">
-          <NavLink
-            to="/products"
-            onClick={() => setOpen(false)}
-            className={linkClass}
-          >
-            <Boxes /> Products
-          </NavLink>
+        <div className="md:hidden absolute top-full left-0 w-full bg-slate-950/95 backdrop-blur-xl border-t border-slate-800">
+          <div className="flex flex-col gap-3 px-6 py-6 text-gray-200">
 
-          {user ? (
-            <>
-              <NavLink
-                to="/cart"
-                onClick={() => setOpen(false)}
-                className={linkClass}
-              >
-                <ShoppingCart /> Cart ({cartItemsCount})
-              </NavLink>
+            <NavLink
+              to="/products"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-3 px-4 py-3 rounded-xl
+                         hover:bg-blue-500/10 hover:text-blue-300 transition"
+            >
+              <Boxes size={20} /> Products
+            </NavLink>
 
-              <NavLink
-                to="/account"
-                onClick={() => setOpen(false)}
-                className={linkClass}
-              >
-                <User /> Account
-              </NavLink>
+            {user ? (
+              <>
+                <NavLink
+                  to="/cart"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl
+                             hover:bg-blue-500/10 hover:text-blue-300 transition"
+                >
+                  <ShoppingCart size={20} /> Cart
+                  {cartItemsCount > 0 && (
+                    <span className="ml-auto bg-rose-500 text-white text-xs px-2 py-0.5 rounded-full">
+                      {cartItemsCount}
+                    </span>
+                  )}
+                </NavLink>
 
-              <button
-                onClick={handleLogout}
-                className="bg-rose-600 text-white py-2 rounded-md hover:bg-rose-700 flex items-center justify-center gap-1 transition"
-              >
-                <LogOut /> Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <NavLink
-                to="/login"
-                onClick={() => setOpen(false)}
-                className={linkClass}
-              >
-                <LogIn /> Login
-              </NavLink>
+                <NavLink
+                  to="/account"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl
+                             hover:bg-blue-500/10 hover:text-blue-300 transition"
+                >
+                  <User size={20} /> Account
+                </NavLink>
 
-              <NavLink
-                to="/register"
-                onClick={() => setOpen(false)}
-                className="bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 flex items-center justify-center gap-1 transition"
-              >
-                <UserPlus /> Register
-              </NavLink>
-            </>
-          )}
+                <button
+                  onClick={handleLogout}
+                  className="mt-2 flex items-center justify-center gap-2 px-4 py-3
+                             rounded-xl bg-rose-600 text-white hover:bg-rose-700 transition"
+                >
+                  <LogOut size={18} /> Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <NavLink
+                  to="/login"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl
+                             hover:bg-blue-500/10 hover:text-blue-300 transition"
+                >
+                  <LogIn size={20} /> Login
+                </NavLink>
+
+                <NavLink
+                  to="/register"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-center gap-2 px-4 py-3
+                             rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition"
+                >
+                  <UserPlus size={20} /> Register
+                </NavLink>
+              </>
+            )}
+          </div>
         </div>
       )}
     </nav>

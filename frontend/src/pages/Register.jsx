@@ -54,7 +54,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 px-4">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-300 to-gray-200 px-4">
       <form
         onSubmit={handleSubmit}
         className="bg-white w-full max-w-md rounded-2xl shadow-xl p-8"
