@@ -25,7 +25,6 @@ const Navbar = () => {
     setOpen(false);
   };
 
-  // ✅ ACTIVE LINK UNDERLINE FIX
   const linkClass = ({ isActive }) =>
     isActive
       ? "flex items-center gap-1 text-blue-300 font-semibold underline underline-offset-8 decoration-2 decoration-blue-400"
@@ -87,13 +86,32 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* MOBILE TOGGLE */}
-        <button
-          className="md:hidden text-white"
-          onClick={() => setOpen(!open)}
-        >
-          {open ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* MOBILE ACTIONS */}
+        <div className="md:hidden flex items-center gap-4">
+          {/* MOBILE CART ICON */}
+          {user && (
+            <NavLink
+              to="/cart"
+              onClick={() => setOpen(false)}
+              className="relative text-white"
+            >
+              <ShoppingCart size={26} />
+              {cartItemsCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-rose-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                  {cartItemsCount}
+                </span>
+              )}
+            </NavLink>
+          )}
+
+          {/* MENU TOGGLE */}
+          <button
+            className="text-white"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* MOBILE MENU */}
